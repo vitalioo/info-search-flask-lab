@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ form.full_name.data or 'Новый студент' }}{% endblock %}
+
+{% block content %}
+<h2>{{ 'Редактировать' if form.full_name.data else 'Добавить' }} студента</h2>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.full_name.label }}<br>
+        {{ form.full_name(size=64) }}
+    </p>
+    <p>
+        {{ form.birth_date.label }}<br>
+        {{ form.birth_date(type='date') }}
+    </p>
+    <p>
+        {{ form.enrollment_year.label }}<br>
+        {{ form.enrollment_year() }}
+    </p>
+    <p>
+        {{ form.university_id.label }}<br>
+        {{ form.university_id() }}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}

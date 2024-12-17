@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Удалить студента{% endblock %}
+
+{% block content %}
+<h2>Удалить студента</h2>
+<p>Вы уверены, что хотите удалить "{{ student.full_name }}"?</p>
+<form method="post">
+    <button type="submit">Удалить</button>
+    <a href="{{ url_for('student_list') }}">Отмена</a>
+</form>
+{% endblock %}

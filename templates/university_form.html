@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ form.full_name.data or 'Новый университет' }}{% endblock %}
+
+{% block content %}
+<h2>{{ 'Редактировать' if form.full_name.data else 'Добавить' }} университет</h2>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.full_name.label }}<br>
+        {{ form.full_name(size=64) }}
+    </p>
+    <p>
+        {{ form.short_name.label }}<br>
+        {{ form.short_name(size=32) }}
+    </p>
+    <p>
+        {{ form.established_date.label }}<br>
+        {{ form.established_date(type='date') }}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}

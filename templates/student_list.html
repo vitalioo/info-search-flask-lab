@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Студенты{% endblock %}
+
+{% block content %}
+<h2>Студенты</h2>
+{% if current_user.is_authenticated %}
+    <p><a href="{{ url_for('student_create') }}">Добавить студента</a></p>
+{% endif %}
+<ul>
+    {% for student in students %}
+        <li>
+            {{ student.full_name }} - Родился {{ student.birth_date }} - Поступил в {{ student.enrollment_year }} в {{ student.university.short_name }}
+            {% if current_user.is_authenticated %}
+                - <a href="{{ url_for('student_update', id=student.id) }}">Редактировать</a>
+                - <a href="{{ url_for('student_delete', id=student.id) }}">Удалить</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
