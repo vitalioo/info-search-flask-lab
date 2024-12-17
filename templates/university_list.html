@@ -5,17 +5,36 @@
 {% block content %}
 <h2>Университеты</h2>
 {% if current_user.is_authenticated %}
-    <p><a href="{{ url_for('university_create') }}">Добавить университет</a></p>
+    <a href="{{ url_for('university_create') }}" class="btn btn-success mb-3">Добавить университет</a>
 {% endif %}
-<ul>
-    {% for university in universities %}
-        <li>
-            {{ university.full_name }} ({{ university.short_name }}) - Основан {{ university.established_date }}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Полное название</th>
+            <th>Сокращенное название</th>
+            <th>Дата основания</th>
             {% if current_user.is_authenticated %}
-                - <a href="{{ url_for('university_update', id=university.id) }}">Редактировать</a>
-                - <a href="{{ url_for('university_delete', id=university.id) }}">Удалить</a>
+            <th>Действия</th>
             {% endif %}
-        </li>
-    {% endfor %}
-</ul>
+        </tr>
+    </thead>
+    <tbody>
+        {% for university in universities %}
+        <tr>
+            <td>{{ university.id }}</td>
+            <td>{{ university.full_name }}</td>
+            <td>{{ university.short_name }}</td>
+            <td>{{ university.established_date }}</td>
+            {% if current_user.is_authenticated %}
+            <td>
+                <a href="{{ url_for('university_update', id=university.id) }}" class="btn btn-sm btn-primary">Редактировать</a>
+                <a href="{{ url_for('university_delete', id=university.id) }}" class="btn btn-sm btn-danger">Удалить</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

@@ -3,21 +3,22 @@
 {% block title %}{{ form.full_name.data or 'Новый университет' }}{% endblock %}
 
 {% block content %}
-<h2>{{ 'Редактировать' if form.full_name.data else 'Добавить' }} университет</h2>
-<form method="post">
+<h2>{{ form.full_name.data and "Редактировать университет" or "Добавить университет" }}</h2>
+<form method="post" class="mt-3">
     {{ form.hidden_tag() }}
-    <p>
-        {{ form.full_name.label }}<br>
-        {{ form.full_name(size=64) }}
-    </p>
-    <p>
-        {{ form.short_name.label }}<br>
-        {{ form.short_name(size=32) }}
-    </p>
-    <p>
-        {{ form.established_date.label }}<br>
-        {{ form.established_date(type='date') }}
-    </p>
-    <p>{{ form.submit() }}</p>
+    <div class="mb-3">
+        {{ form.full_name.label(class="form-label") }}
+        {{ form.full_name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.short_name.label(class="form-label") }}
+        {{ form.short_name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.established_date.label(class="form-label") }}
+        {{ form.established_date(class="form-control", type="date") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{{ url_for('university_list') }}" class="btn btn-secondary">Отмена</a>
 </form>
 {% endblock %}

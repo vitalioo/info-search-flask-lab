@@ -4,20 +4,20 @@
 
 {% block content %}
 <h2>Регистрация</h2>
-<form method="post">
+<form method="post" class="mt-3">
     {{ form.hidden_tag() }}
-    <p>
-        {{ form.username.label }}<br>
-        {{ form.username(size=32) }}
-    </p>
-    <p>
-        {{ form.password.label }}<br>
-        {{ form.password(size=32) }}
-    </p>
-    <p>
-        {{ form.confirm_password.label }}<br>
-        {{ form.confirm_password(size=32) }}
-    </p>
-    <p>{{ form.submit() }}</p>
+    <div class="mb-3">
+        {{ form.username.label(class="form-label") }}
+        {{ form.username(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.password.label(class="form-label") }}
+        {{ form.password(class="form-control", type="password") }}
+    </div>
+    <div class="mb-3">
+        {{ form.confirm_password.label(class="form-label") }}
+        {{ form.confirm_password(class="form-control", type="password") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
 </form>
 {% endblock %}
